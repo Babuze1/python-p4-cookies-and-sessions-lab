@@ -23,6 +23,18 @@ class Article(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'Article {self.id} by {self.author}'
+    
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'author': self.author,
+            'title': self.title,
+            'content': self.content,
+            'preview': self.preview,
+            'minutes_to_read': self.minutes_to_read,
+            'date': self.date.strftime('%Y-%m-%d %H:%M:%S'), 
+        }
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
